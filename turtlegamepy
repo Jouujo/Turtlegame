@@ -1,0 +1,77 @@
+#turtle gameusing package turtle
+
+import turtle
+import random
+import time
+
+
+#setup screen for turtle
+screen = turtle.Screen()
+screen.bgcolor('lightpink') #this sets bg color for our turle game
+
+#we want two players and whoever is first wins!
+#player one set up
+player_one = turtle.Turtle()
+
+#color of player one
+player_one.color('black')
+#get a turtle shape
+player_one.shape('turtle')
+
+#setup player two
+player_two = player_one.clone()
+#color of player two
+player_two.color('purple')
+
+#positioning our players
+player_one.penup()
+player_one.goto(-300, 200)
+player_two.penup()
+player_two.goto(-300, -200)
+
+#lets draw a line
+player_one.goto(300,-250)
+player_one.left(90)
+player_one.pendown()
+player_one.color('red')
+player_one.forward(500)
+player_one.write("Finish!", font=35)
+#allows player one to go back to starting position
+player_one.penup()
+player_one.color('black')
+player_one.goto(-300, 200)
+player_one.right(90)
+
+#we need to make sure both players have their pen down, to know which one is moving
+player_one.pendown()
+player_two.pendown()
+
+#lets create values for the dice
+
+die = [1, 2, 3, 4, 5, 6]
+
+#lets create the game
+for i in range (30):
+    if player_one.pos() >= (300, 250):
+        print("Player One Wins the Race!!")
+        break
+    elif player_two.pos() >= (300, 250):
+        print("Player Two Wins the Race!!")
+        break
+    else:
+        die_roll = random.choice(die) 
+        player_one.forward(die_roll * 25) #multiply because turtle graphics is so tiny
+        time.sleep(1)
+        die_roll2 = random.choice(die)
+        player_two.forward(die_roll2 * 25)
+        time.sleep (1)
+
+
+    
+
+
+#this leaves the turtle graphics on the screen(python works fast)
+turtle.done()
+
+
+
